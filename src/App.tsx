@@ -1,31 +1,27 @@
-import Swal from "sweetalert2";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Login from "./components/Login";
+import ManagerLayout from "./components/ManagerLayout";
+import Dashboard from "./components/Dashboard";
+import EmployeeLayout from "./components/EmployeeLayout";
 
 function App() {
-  const openNormalAlert = () => {
-    alert("Hello, World!");
-  };
-
-  const openSweetAlert = () => {
-    // alert("Hello, World!");
-    Swal.fire("Hello World", "", "success");
-  };
-
   return (
     <main>
-      <h1 className="text-4xl font-bold text-center">React</h1>
-      <h1
-        className="text-2xl font-bold text-center cursor-pointer p-2 rounded border-black border hover:text-white hover:bg-black mx-auto w-40 my-4"
-        onClick={openNormalAlert}
-      >
-        ALert
-      </h1>
-      <h1
-        className="text-2xl font-bold text-center cursor-pointer p-2 rounded border-black border hover:text-white hover:bg-black mx-auto w-40 my-4"
-        onClick={openSweetAlert}
-      >
-        SweetALert
-      </h1>
+      <h1 className="text-3xl font-bold text-center pt-3">React Layout</h1>
+      <div>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+
+          <Route path="/manager" element={<ManagerLayout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+          </Route>
+
+          <Route path="/employee" element={<EmployeeLayout />}>
+            <Route path="dashboard" element={<Dashboard />} />
+          </Route>
+        </Routes>
+      </div>
     </main>
   );
 }
